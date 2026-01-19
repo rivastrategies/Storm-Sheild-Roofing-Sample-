@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,19 +15,668 @@
       .animate-pulse-red {
         animation: pulse-red 2s infinite ease-in-out;
       }
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-slate-50">
-    <div id="root"></div>
+  </head>
+  <body class="bg-slate-50 min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+    
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-slate-900 text-white shadow-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 sm:h-20">
+          <div class="flex items-center gap-2">
+            <div class="bg-orange-600 p-2 rounded-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <span class="text-xl font-extrabold tracking-tighter uppercase sm:text-2xl">
+              Storm<span class="text-orange-500">Shield</span>
+            </span>
+          </div>
+          
+          <div class="hidden md:flex space-x-8 font-semibold">
+            <a href="#services" class="hover:text-orange-500 transition">Services</a>
+            <a href="#insurance" class="hover:text-orange-500 transition">Insurance Help</a>
+            <a href="#scanner" class="hover:text-orange-500 transition">Request Inspection</a>
+          </div>
+
+          <div class="flex items-center">
+            <a 
+              href="tel:5559117663" 
+              class="bg-red-600 animate-pulse-red px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-red-700 transition sm:px-6 sm:py-3"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 2V3z" />
+              </svg>
+              <span class="hidden sm:inline">24/7 DISPATCH:</span> (555) 911-ROOF
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow">
+      
+      <!-- Hero -->
+      <section class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-slate-900">
+        <div class="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1628533225734-79e71511283d?q=80&w=2070&auto=format&fit=crop" 
+            class="w-full h-full object-cover opacity-30 mix-blend-overlay"
+            alt="Stormy sky background"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/50"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+          <div class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 animate-bounce shadow-lg shadow-red-900/50">
+            ⚠️ Critical Storm Warning Active
+          </div>
+          <h1 class="text-4xl md:text-7xl font-black text-white leading-tight mb-6 uppercase tracking-tight">
+            24/7 Emergency <br/>
+            <span class="text-orange-500">Storm Damage</span> Roofing
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto font-medium">
+            Is your roof leaking? Don't wait. We have emergency crews standing by for immediate tarping and rapid damage repair.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="tel:5559117663" 
+              class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white text-xl font-extrabold px-12 py-5 rounded-xl shadow-2xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 border-b-4 border-red-800"
+            >
+              CALL NOW: (555) 911-ROOF
+            </a>
+            <a 
+              href="#scanner" 
+              class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white backdrop-blur-md text-xl font-bold px-12 py-5 rounded-xl border border-white/30 transition-all flex items-center justify-center gap-3"
+            >
+              Request Inspection
+            </a>
+          </div>
+
+          <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-12 opacity-80">
+            <div class="flex items-center gap-2 text-white font-semibold">
+              <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              60-Min Response Time
+            </div>
+            <div class="flex items-center gap-2 text-white font-semibold">
+              <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Insurance Claims Pros
+            </div>
+            <div class="flex items-center gap-2 text-white font-semibold">
+              <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Zero Out-of-Pocket
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Urgent Ticker -->
+      <div class="bg-red-700 py-3 overflow-hidden whitespace-nowrap border-y border-red-800">
+        <div class="flex animate-[marquee_20s_linear_infinite] gap-12 items-center">
+            <!-- Repeated elements for marquee effect -->
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+              <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+            <span class="text-white font-black uppercase text-sm tracking-widest flex items-center gap-2">
+                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                LIVE DISPATCH ACTIVE IN DALLAS, TX • RAPID HAIL DAMAGE RESPONSE • INSURANCE PROS ON-SITE
+            </span>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 uppercase">
+              Battle-Tested <span class="text-red-600">Solutions</span>
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
+              When the storm hits, experience matters. Our specialized crews are trained for high-intensity emergency scenarios.
+            </p>
+          </div>
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- 24/7 Emergency Tarping -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-slate-200 hover:border-orange-500 transition-all transform hover:-translate-y-2">
+              <div class="bg-red-100 text-red-600 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
+                ⚡
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-4">24/7 Emergency Tarping</h3>
+              <p class="text-slate-600 leading-relaxed font-medium">
+                Prevent further water damage with our rapid-response tarping crews. We arrive within 60 minutes.
+              </p>
+            </div>
+
+            <!-- Hail & Wind Repair -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-slate-200 hover:border-orange-500 transition-all transform hover:-translate-y-2">
+              <div class="bg-orange-100 text-orange-600 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
+                🌪️
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-4">Hail & Wind Repair</h3>
+              <p class="text-slate-600 leading-relaxed font-medium">
+                Specialized repair teams for high-velocity wind damage and impact shingle replacement.
+              </p>
+            </div>
+
+            <!-- Leak Detection -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-slate-200 hover:border-orange-500 transition-all transform hover:-translate-y-2">
+              <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
+                🔍
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-4">Leak Detection</h3>
+              <p class="text-slate-600 leading-relaxed font-medium">
+                Advanced thermal imaging to find hidden moisture before it turns into dangerous mold.
+              </p>
+            </div>
+
+            <!-- Insurance Claim Help -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-slate-200 hover:border-orange-500 transition-all transform hover:-translate-y-2">
+              <div class="bg-slate-900 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner">
+                📑
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-4">Insurance Claim Help</h3>
+              <p class="text-slate-600 leading-relaxed font-medium">
+                We work directly with your insurance company to ensure you get every penny you deserve.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DamageScanner -->
+      <section id="scanner" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-bold mb-4">
+                EXPERT INSPECTION
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight">
+                Get a Professional <br/><span class="text-orange-600 underline">Damage Assessment</span>
+              </h2>
+              <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                Upload a clear photo of your roof damage and our expert inspectors will review it manually. We provide rapid feedback and can schedule an on-site evaluation within 24 hours.
+              </p>
+              
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center gap-3 font-semibold text-slate-800">
+                  <div class="bg-orange-500 rounded-full p-1">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  Certified roof inspection report
+                </div>
+                <div class="flex items-center gap-3 font-semibold text-slate-800">
+                    <div class="bg-orange-500 rounded-full p-1">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    On-site hail & wind evaluation
+                </div>
+                <div class="flex items-center gap-3 font-semibold text-slate-800">
+                    <div class="bg-orange-500 rounded-full p-1">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    Detailed repair cost estimate
+                </div>
+                <div class="flex items-center gap-3 font-semibold text-slate-800">
+                    <div class="bg-orange-500 rounded-full p-1">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    Direct insurance claim support
+                </div>
+              </div>
+            </div>
+  
+            <div class="bg-slate-50 p-8 rounded-3xl border-2 border-dashed border-slate-300 shadow-xl">
+              <div id="form-container">
+                  <form id="damage-form" class="space-y-6">
+                    <div class="text-center">
+                      <div class="mb-6">
+                        <!-- Preview State (Initially Hidden) -->
+                        <div id="image-preview" class="hidden relative inline-block">
+                            <img id="preview-img" src="" alt="Damage preview" class="max-h-64 rounded-xl shadow-lg border-4 border-white" />
+                            <button type="button" id="remove-file-btn" class="absolute -top-3 -right-3 bg-red-600 text-white rounded-full p-1 shadow-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Upload State -->
+                        <div id="upload-trigger" class="cursor-pointer group bg-white border-2 border-dashed border-slate-300 rounded-2xl p-12 transition hover:border-orange-500 hover:bg-orange-50/50">
+                          <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                          </div>
+                          <p class="text-lg font-bold text-slate-900">Upload Damage Photo (Optional)</p>
+                          <p class="text-sm text-slate-500">JPG, PNG up to 10MB</p>
+                        </div>
+
+                        <input 
+                          type="file" 
+                          id="file-input" 
+                          class="hidden" 
+                          accept="image/*" 
+                        />
+                      </div>
+                    </div>
+    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <input 
+                        type="text" 
+                        placeholder="Full Name" 
+                        required 
+                        class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-orange-500 outline-none"
+                      />
+                      <input 
+                        type="tel" 
+                        placeholder="Phone Number" 
+                        required 
+                        class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-orange-500 outline-none"
+                      />
+                    </div>
+                    <input 
+                      type="text" 
+                      placeholder="Property Address" 
+                      required 
+                      class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-orange-500 outline-none"
+                    />
+    
+                    <button 
+                      type="submit"
+                      id="submit-btn"
+                      class="w-full py-4 rounded-xl text-xl font-bold transition-all shadow-lg bg-orange-600 text-white hover:bg-orange-700 hover:-translate-y-1"
+                    >
+                      Submit Inspection Request
+                    </button>
+                  </form>
+                </div>
+            
+                <div id="success-message" class="hidden text-center py-12">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 class="text-3xl font-black text-slate-900 mb-4">REQUEST RECEIVED!</h3>
+                    <p class="text-lg text-slate-600 mb-8">
+                      Our dispatch team is reviewing your details. An expert inspector will call you within the hour to coordinate next steps.
+                    </p>
+                    <button 
+                      id="reset-btn"
+                      class="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition"
+                    >
+                      Back to Form
+                    </button>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- CTA Block -->
+      <section class="bg-orange-500 py-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="text-center md:text-left">
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-2 uppercase italic">
+              DON'T LET THE RAIN <br/>DESTROY YOUR HOME.
+            </h2>
+            <p class="text-xl text-slate-900 font-bold opacity-80">
+              Call now for immediate tarping and prevent interior water damage.
+            </p>
+          </div>
+          <a 
+            href="tel:5559117663" 
+            class="bg-slate-900 text-white px-12 py-6 rounded-2xl text-2xl font-black shadow-2xl hover:bg-slate-800 transition transform hover:-rotate-1 active:scale-95"
+          >
+            (555) 911-ROOF
+          </a>
+        </div>
+      </section>
+
+      <!-- Insurance Help -->
+      <section id="insurance" class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-orange-600/10 skew-x-12 transform translate-x-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+              <div class="absolute -top-10 -left-10 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl"></div>
+              <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                STOP FIGHTING <br/>THE <span class="text-orange-500">ADJUSTERS.</span>
+              </h2>
+              <p class="text-xl text-slate-300 mb-10 leading-relaxed">
+                Filing a claim can be a nightmare. We provide expert public adjusters and documentation teams to maximize your payout. Most homeowners receive 40% more when using our certified damage reports.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Helper loop manual expansion -->
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div class="bg-orange-500 rounded-full p-1 shadow-lg shadow-orange-900/40">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span class="font-bold tracking-tight">Direct Billing to Carriers</span>
+                </div>
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div class="bg-orange-500 rounded-full p-1 shadow-lg shadow-orange-900/40">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span class="font-bold tracking-tight">Full Property Inspection</span>
+                </div>
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div class="bg-orange-500 rounded-full p-1 shadow-lg shadow-orange-900/40">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span class="font-bold tracking-tight">No Upfront Deductibles</span>
+                </div>
+                <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div class="bg-orange-500 rounded-full p-1 shadow-lg shadow-orange-900/40">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span class="font-bold tracking-tight">Supplement Expertise</span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="bg-white p-10 rounded-3xl text-slate-900 shadow-2xl">
+              <h3 class="text-3xl font-black mb-6 uppercase tracking-tight">Claim Support Request</h3>
+              <form class="space-y-4" onsubmit="event.preventDefault()">
+                <div>
+                  <label class="block text-sm font-black text-slate-500 uppercase mb-2">Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="John Doe"
+                    class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:border-orange-500 outline-none transition font-bold"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-black text-slate-500 uppercase mb-2">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    placeholder="(555) 000-0000"
+                    class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:border-orange-500 outline-none transition font-bold"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-black text-slate-500 uppercase mb-2">Insurance Carrier</label>
+                  <select class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:border-orange-500 outline-none transition font-bold">
+                    <option>Select Carrier...</option>
+                    <option>State Farm</option>
+                    <option>Allstate</option>
+                    <option>Progressive</option>
+                    <option>Liberty Mutual</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <button class="w-full bg-orange-600 hover:bg-orange-700 text-white py-5 rounded-xl text-xl font-black uppercase tracking-wider transition-all transform hover:scale-[1.02] shadow-xl border-b-4 border-orange-800">
+                  Send Request
+                </button>
+                <p class="text-center text-sm text-slate-400 font-semibold mt-4">
+                  🔒 Your data is encrypted and secure.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Sarah -->
+              <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative shadow-sm">
+                <div class="text-orange-500 text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                <p class="text-slate-700 italic font-medium mb-6 relative z-10">The storm hit at 2AM. StormShield had a crew tarping my roof by 3:15AM. Absolutely incredible service.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                  <div>
+                    <p class="font-black text-slate-900">Sarah Jenkins</p>
+                    <p class="text-sm text-orange-600 font-bold uppercase">Houston, TX</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Mark -->
+              <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative shadow-sm">
+                <div class="text-orange-500 text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                <p class="text-slate-700 italic font-medium mb-6 relative z-10">My insurance agent tried to deny half the claim. StormShield's AI report and public adjusters got me the full replacement!</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                  <div>
+                    <p class="font-black text-slate-900">Mark Thompson</p>
+                    <p class="text-sm text-orange-600 font-bold uppercase">Oklahoma City, OK</p>
+                  </div>
+                </div>
+              </div>
+              <!-- David -->
+              <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative shadow-sm">
+                <div class="text-orange-500 text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                <p class="text-slate-700 italic font-medium mb-6 relative z-10">Fast, professional, and they handled all the paperwork. I didn't pay a dime out of pocket.</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                  <div>
+                    <p class="font-black text-slate-900">David Rivera</p>
+                    <p class="text-sm text-orange-600 font-bold uppercase">Orlando, FL</p>
+                  </div>
+                </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-white py-16 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div>
+            <div class="flex items-center gap-2 mb-6">
+              <div class="bg-orange-600 p-1.5 rounded-md">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <span class="text-xl font-black tracking-tighter uppercase">
+                Storm<span class="text-orange-500">Shield</span>
+              </span>
+            </div>
+            <p class="text-slate-400 leading-relaxed mb-6 font-medium">
+              The nation's most trusted emergency roofing network. Over 15,000 storm claims handled successfully.
+            </p>
+            <div class="flex gap-4">
+              <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-orange-600 transition cursor-pointer">
+                <span class="font-bold">f</span>
+              </div>
+              <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-orange-600 transition cursor-pointer">
+                <span class="font-bold">X</span>
+              </div>
+              <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-orange-600 transition cursor-pointer">
+                <span class="font-bold">in</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-black mb-6 uppercase tracking-widest text-orange-500">Quick Links</h4>
+            <ul class="space-y-4 text-slate-400 font-bold">
+              <li><a href="#" class="hover:text-white transition">Emergency Tarping</a></li>
+              <li><a href="#" class="hover:text-white transition">Damage Assessment</a></li>
+              <li><a href="#" class="hover:text-white transition">Insurance Help</a></li>
+              <li><a href="#" class="hover:text-white transition">Roof Replacement</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-black mb-6 uppercase tracking-widest text-orange-500">Locations</h4>
+            <ul class="space-y-4 text-slate-400 font-bold">
+              <li>Texas Headquarters</li>
+              <li>Florida Rapid-Response</li>
+              <li>Midwest Hub (Oklahoma)</li>
+              <li>Carolinas Dispatch</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-black mb-6 uppercase tracking-widest text-orange-500">Contact</h4>
+            <div class="space-y-6">
+              <a href="tel:5559117663" class="block p-4 bg-white/5 rounded-xl border border-white/10 hover:border-orange-500 transition group">
+                <p class="text-xs text-orange-500 font-black uppercase mb-1">Emergency Dispatch</p>
+                <p class="text-xl font-black group-hover:text-orange-500">(555) 911-ROOF</p>
+              </a>
+              <div class="flex items-center gap-3 text-slate-400 font-bold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                help@stormshield.com
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 font-bold gap-4">
+          <p>© 2024 StormShield Emergency Roofing. All Rights Reserved.</p>
+          <div class="flex gap-8 uppercase tracking-widest text-xs">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Logic -->
+    <script>
+      // Scanner Form Logic
+      const fileInput = document.getElementById('file-input');
+      const uploadTrigger = document.getElementById('upload-trigger');
+      const imagePreview = document.getElementById('image-preview');
+      const previewImg = document.getElementById('preview-img');
+      const removeFileBtn = document.getElementById('remove-file-btn');
+      const damageForm = document.getElementById('damage-form');
+      const formContainer = document.getElementById('form-container');
+      const successMessage = document.getElementById('success-message');
+      const resetBtn = document.getElementById('reset-btn');
+      const submitBtn = document.getElementById('submit-btn');
+
+      // Trigger file input
+      uploadTrigger.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      // Handle file selection
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            uploadTrigger.classList.add('hidden');
+            imagePreview.classList.remove('hidden');
+          }
+          
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Remove file
+      removeFileBtn.addEventListener('click', () => {
+        fileInput.value = '';
+        previewImg.src = '';
+        imagePreview.classList.add('hidden');
+        uploadTrigger.classList.remove('hidden');
+      });
+
+      // Submit Form
+      damageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Loading State
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.classList.add('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
+        submitBtn.classList.remove('bg-orange-600', 'text-white', 'hover:bg-orange-700', 'hover:-translate-y-1');
+        submitBtn.innerHTML = `
+          <span class="flex items-center justify-center gap-2">
+            <svg class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Sending Request...
+          </span>
+        `;
+
+        // Simulate API
+        setTimeout(() => {
+          formContainer.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          
+          // Reset Button State
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
+          submitBtn.classList.add('bg-orange-600', 'text-white', 'hover:bg-orange-700', 'hover:-translate-y-1');
+          submitBtn.innerHTML = originalBtnContent;
+        }, 1500);
+      });
+
+      // Reset Form
+      resetBtn.addEventListener('click', () => {
+        successMessage.classList.add('hidden');
+        formContainer.classList.remove('hidden');
+        damageForm.reset();
+        // Also clear file selection
+        fileInput.value = '';
+        previewImg.src = '';
+        imagePreview.classList.add('hidden');
+        uploadTrigger.classList.remove('hidden');
+      });
+    </script>
   </body>
 </html>
